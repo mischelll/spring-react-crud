@@ -1,6 +1,7 @@
 package com.example.crud.domain;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -8,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     private Long id;
 
     public Long getId() {
