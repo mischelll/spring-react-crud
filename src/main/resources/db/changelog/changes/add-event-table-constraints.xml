@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-event-user-join-table" author="admin">
+        <createTable tableName="event_user">
+            <column name="event_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-fk-constraints-to-event-user-table" author="admin">
+
+        <addForeignKeyConstraint baseColumnNames="event_id"
+                                 baseTableName="event_user"
+                                 constraintName="fk_event_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="event_user"
+                                 constraintName="fk_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+
+    <changeSet id="add-fk-constraints-to-event-group-table" author="admin">
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="event"
+                                 constraintName="fk_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group"/>
+
+
+    </changeSet>
+
+</databaseChangeLog>
