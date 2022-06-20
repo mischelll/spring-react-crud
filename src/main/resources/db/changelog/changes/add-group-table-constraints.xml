@@ -3,12 +3,12 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="4" author="admin">
+    <changeSet id="add-foreign-key-constraint-group-user" author="admin">
         <comment>Add foreign key constraint Group-User</comment>
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="group"
+                                 baseTableName="groups"
                                  constraintName="fk_group_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user"/>
+                                 referencedTableName="users"/>
     </changeSet>
 </databaseChangeLog>

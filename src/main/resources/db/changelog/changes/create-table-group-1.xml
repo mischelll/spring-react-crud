@@ -4,20 +4,19 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet author="admin" id="create-table-group">
-        <createTable tableName="group">
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints primaryKey="true"/>
+        <createTable tableName="groups">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="address" type="VARCHAR(255)"/>
             <column name="city" type="VARCHAR(255)"/>
-            <column name="state_or_province" type="VARCHAR(255)"/>
+            <column name="state_of_province" type="VARCHAR(255)"/>
             <column name="country" type="VARCHAR(255)"/>
             <column name="postal_code" type="VARCHAR(255)"/>
-            <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
+            <column name="user_id" type="bigint"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

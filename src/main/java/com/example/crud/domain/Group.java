@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "group")
+@Table(name = "groups")
 public class Group extends BaseEntity {
 
     @Column(name = "name")
@@ -18,7 +18,7 @@ public class Group extends BaseEntity {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "stateOfProvince")
+    @Column(name = "state_of_province")
     private String stateOfProvince;
 
     @Column(name = "country")
