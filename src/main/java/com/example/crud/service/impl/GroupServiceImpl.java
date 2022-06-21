@@ -5,12 +5,17 @@ import com.example.crud.mapper.GroupMapper;
 import com.example.crud.repository.GroupRepository;
 import com.example.crud.service.GroupService;
 import com.example.crud.service.dto.GroupDTO;
+import com.example.crud.service.exception.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
+@Transactional
 public class GroupServiceImpl implements GroupService {
 
     private final Logger log = LoggerFactory.getLogger(GroupServiceImpl.class);
@@ -40,11 +45,27 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<GroupDTO> findAll() {
-        return null;
+        log.info("Find all Groups.");
+        return groupRepository
+                .findAll()
+                .stream()
+                .map(groupMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public GroupDTO findOne(Long id) {
-        return null;
+        log.info("Find Group by id: {}", id);
+        return groupMapper.toDto(groupRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public GroupDTO partialUpdate(GroupDTO groupDTO) {
+        log.info("Update Group: {}", groupDTO);
+        Group group = groupRepository.findById(groupDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Group with id: %d not found!", groupDTO.getId())));
+        groupMapper.partialUpdate(group, groupDTO);
+        Group updatedGroup = groupRepository.save(group);
+        return groupMapper.toDto(updatedGroup);
     }
 }

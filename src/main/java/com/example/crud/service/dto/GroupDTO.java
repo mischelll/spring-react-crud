@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 public class GroupDTO {
 
+    private Long id;
     @NotNull
     private String name;
     private String address;
@@ -59,5 +60,13 @@ public class GroupDTO {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

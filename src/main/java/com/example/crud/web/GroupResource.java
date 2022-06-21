@@ -18,7 +18,7 @@ public class GroupResource {
 
     private final Logger log = LoggerFactory.getLogger(GroupResource.class);
 
-    private  final GroupService groupService;
+    private final GroupService groupService;
 
     /**
      * Instantiates a new Group resource.
@@ -35,7 +35,7 @@ public class GroupResource {
      * @return the response entity
      */
     @GetMapping("/groups")
-    public ResponseEntity<List<GroupDTO>> getAllGroups(){
+    public ResponseEntity<List<GroupDTO>> getAllGroups() {
         log.info("REST request to get all Groups.");
         List<GroupDTO> allGroups = groupService.findAll();
         return ResponseEntity.ok(allGroups);
@@ -48,7 +48,7 @@ public class GroupResource {
      * @return the response entity
      */
     @GetMapping("/groups/{id}")
-    public ResponseEntity<GroupDTO> getGroup(@PathVariable Long id){
+    public ResponseEntity<GroupDTO> getGroup(@PathVariable Long id) {
         log.info("REST request to get Group by id: {}", id);
         GroupDTO groupDTO = groupService.findOne(id);
         return ResponseEntity.ok(groupDTO);
@@ -61,9 +61,22 @@ public class GroupResource {
      * @return the response entity
      */
     @PostMapping("/groups")
-    public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO groupDTO){
+    public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO groupDTO) {
         log.info("REST request to create Group: {}", groupDTO);
         GroupDTO newGroup = groupService.save(groupDTO);
         return ResponseEntity.created(URI.create("/api/v1/groups")).body(newGroup);
+    }
+
+    /**
+     * Partial update group entity.
+     *
+     * @param groupDTO the group dto
+     * @return the response entity
+     */
+    @PatchMapping("/groups")
+    public ResponseEntity<GroupDTO> partialUpdateGroup(@RequestBody GroupDTO groupDTO) {
+        log.info("REST request to partially update Group: {}", groupDTO);
+        GroupDTO partialUpdatedGroup = groupService.partialUpdate(groupDTO);
+        return ResponseEntity.ok(partialUpdatedGroup);
     }
 }
