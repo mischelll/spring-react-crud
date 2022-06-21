@@ -5,7 +5,7 @@ import com.example.crud.service.dto.GroupDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface GroupMapper {
+public interface GroupMapper extends EntityMapper<GroupDTO, Group> {
 
     GroupDTO toDto(Group group);
 
