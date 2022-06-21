@@ -30,7 +30,8 @@ public class Group extends BaseEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "group_id")
     private Set<Event> events;
 
     public String getName() {
