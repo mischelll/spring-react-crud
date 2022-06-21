@@ -1,16 +1,6 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5435/crud_react_spring
-    username: postgres
-    password: admin
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      pool-name: Hikari
-      auto-commit: false
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-  liquibase:
-    change-log: classpath:db/changelog/master.xml
+  profiles:
+    default: dev
 
 server:
   servlet:
