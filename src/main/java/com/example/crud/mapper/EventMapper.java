@@ -5,7 +5,7 @@ import com.example.crud.service.dto.EventDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface EventMapper {
+public interface EventMapper extends EntityMapper<EventDTO, Event> {
 
     EventDTO toDto(Event event);
 

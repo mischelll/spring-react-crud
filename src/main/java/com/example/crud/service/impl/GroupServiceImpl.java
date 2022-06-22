@@ -30,12 +30,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void delete(Long id) {
-        log.info("Delete Group by id: {}", id);
-        groupRepository.deleteById(id);
-    }
-
-    @Override
     public GroupDTO save(GroupDTO groupDTO) {
         log.info("Create Group: {}", groupDTO);
         Group entity = groupMapper.toEntity(groupDTO);
@@ -68,4 +62,11 @@ public class GroupServiceImpl implements GroupService {
         Group updatedGroup = groupRepository.save(group);
         return groupMapper.toDto(updatedGroup);
     }
+
+    @Override
+    public void delete(Long id) {
+        log.info("Delete Group by id: {}", id);
+        groupRepository.deleteById(id);
+    }
+
 }
