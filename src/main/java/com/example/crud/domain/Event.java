@@ -1,9 +1,6 @@
 package com.example.crud.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +17,11 @@ public class Event extends BaseEntity{
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = User.class)
+    @JoinTable(
+            name = "events_users",
+            joinColumns = {@JoinColumn(name = "event_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
     private Set<User> attendees;
 
     public Instant getDate() {
