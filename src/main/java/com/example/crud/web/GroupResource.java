@@ -14,6 +14,7 @@ import java.util.List;
  * The type Group resource.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class GroupResource {
 
     private final Logger log = LoggerFactory.getLogger(GroupResource.class);
