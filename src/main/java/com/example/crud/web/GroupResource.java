@@ -71,6 +71,7 @@ public class GroupResource {
     /**
      * Partial update group entity.
      *
+     * @param id       the id
      * @param groupDTO the group dto
      * @return the response entity
      */
@@ -81,6 +82,12 @@ public class GroupResource {
         return ResponseEntity.ok(partialUpdatedGroup);
     }
 
+    /**
+     * Delete by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/groups/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         log.info("REST request to delete Group by id: {}", id);
