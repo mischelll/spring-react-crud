@@ -4,7 +4,7 @@ import com.example.crud.domain.Group;
 import com.example.crud.service.dto.GroupDTO;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {EventMapper.class})
 public interface GroupMapper extends EntityMapper<GroupDTO, Group> {
 
     GroupDTO toDto(Group group);

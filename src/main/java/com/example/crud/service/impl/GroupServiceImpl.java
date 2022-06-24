@@ -54,10 +54,10 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public GroupDTO partialUpdate(GroupDTO groupDTO) {
+    public GroupDTO partialUpdate(Long id, GroupDTO groupDTO) {
         log.info("Update Group: {}", groupDTO);
-        Group group = groupRepository.findById(groupDTO.getId())
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Group with id: %d not found!", groupDTO.getId())));
+        Group group = groupRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Group with id: %d not found!", id)));
         groupMapper.partialUpdate(group, groupDTO);
         Group updatedGroup = groupRepository.save(group);
         return groupMapper.toDto(updatedGroup);

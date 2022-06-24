@@ -42,8 +42,9 @@ public interface GroupService {
     /**
      * Partial update group dto.
      *
+     * @param id       the id
      * @param groupDTO the group dto
      * @return the group dto
      */
-    GroupDTO partialUpdate(GroupDTO groupDTO);
+    GroupDTO partialUpdate(Long id, GroupDTO groupDTO);
 }
