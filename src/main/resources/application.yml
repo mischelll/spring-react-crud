@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    default: dev
+
+server:
+  servlet:
+    context-path: /api/v1
+  error:
+    include-message: always
