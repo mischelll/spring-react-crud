@@ -1,6 +1,7 @@
 package com.example.crud.service.dto;
 
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 public class GroupDTO {
@@ -13,6 +14,8 @@ public class GroupDTO {
     private String stateOfProvince;
     private String country;
     private String postalCode;
+
+    private Set<EventDTO> events;
 
     public String getName() {
         return name;
@@ -68,5 +71,13 @@ public class GroupDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<EventDTO> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<EventDTO> events) {
+        this.events = events;
     }
 }
