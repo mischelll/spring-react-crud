@@ -14,7 +14,7 @@ import java.util.List;
  * The type Group resource.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:3000"}, maxAge = 3600)
 public class GroupResource {
 
     private final Logger log = LoggerFactory.getLogger(GroupResource.class);
@@ -74,10 +74,17 @@ public class GroupResource {
      * @param groupDTO the group dto
      * @return the response entity
      */
-    @PatchMapping("/groups")
-    public ResponseEntity<GroupDTO> partialUpdateGroup(@RequestBody GroupDTO groupDTO) {
+    @PatchMapping("/groups/{id}")
+    public ResponseEntity<GroupDTO> partialUpdateGroup(@PathVariable Long id, @RequestBody GroupDTO groupDTO) {
         log.info("REST request to partially update Group: {}", groupDTO);
-        GroupDTO partialUpdatedGroup = groupService.partialUpdate(groupDTO);
+        GroupDTO partialUpdatedGroup = groupService.partialUpdate(id, groupDTO);
         return ResponseEntity.ok(partialUpdatedGroup);
+    }
+
+    @DeleteMapping("/groups/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        log.info("REST request to delete Group by id: {}", id);
+        groupService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
