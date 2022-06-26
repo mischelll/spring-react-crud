@@ -64,6 +64,15 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public List<GroupDTO> findAllByUserId(Long userId) {
+        log.info("Find all Groups by User id: {}", userId);
+        return groupRepository.findAllByUserId(userId)
+                .stream()
+                .map(groupMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void delete(Long id) {
         log.info("Delete Group by id: {}", id);
         groupRepository.deleteById(id);

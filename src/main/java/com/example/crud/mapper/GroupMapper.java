@@ -4,6 +4,9 @@ import com.example.crud.domain.Group;
 import com.example.crud.service.dto.GroupDTO;
 import org.mapstruct.Mapper;
 
+/**
+ * The interface Group mapper.
+ */
 @Mapper(componentModel = "spring", uses = {EventMapper.class})
 public interface GroupMapper extends EntityMapper<GroupDTO, Group> {
 
@@ -11,6 +14,12 @@ public interface GroupMapper extends EntityMapper<GroupDTO, Group> {
 
     Group toEntity(GroupDTO groupDTO);
 
+    /**
+     * From id group.
+     *
+     * @param id the id
+     * @return the group
+     */
     default Group fromId(Long id){
         if(id == null){
             return null;

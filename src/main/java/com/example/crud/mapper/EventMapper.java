@@ -4,6 +4,9 @@ import com.example.crud.domain.Event;
 import com.example.crud.service.dto.EventDTO;
 import org.mapstruct.Mapper;
 
+/**
+ * The interface Event mapper.
+ */
 @Mapper(componentModel = "spring")
 public interface EventMapper extends EntityMapper<EventDTO, Event> {
 
@@ -11,6 +14,12 @@ public interface EventMapper extends EntityMapper<EventDTO, Event> {
 
     Event toEntity(EventDTO eventDTO);
 
+    /**
+     * From id event.
+     *
+     * @param id the id
+     * @return the event
+     */
     default Event fromId(Long id) {
         if (id == null) {
             return null;

@@ -47,4 +47,12 @@ public interface GroupService {
      * @return the group dto
      */
     GroupDTO partialUpdate(Long id, GroupDTO groupDTO);
+
+    /**
+     * Find all by user id list.
+     *
+     * @param userId the user id
+     * @return the list
+     */
+    List<GroupDTO> findAllByUserId(Long userId);
 }
