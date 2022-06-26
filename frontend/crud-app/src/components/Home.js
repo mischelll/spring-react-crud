@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 import { useCookies } from 'react-cookie';
-import { getUser } from '../services/userService.js';
+import { getUser, sendLogoutReq } from '../services/userService.js';
 
 export default function Home() {
 
@@ -34,15 +34,11 @@ export default function Home() {
     }
 
     const logout = () => {
-        fetch('/api/v1/logout', {
-            method: 'POST', credentials: 'include',
+        sendLogoutReq({
+            method: 'POST', 
+            credentials: 'include',
             headers: { 'X-XSRF-TOKEN': cookies['XSRF-TOKEN'] }
-        })
-            .then(res => res.json())
-            .then(response => {
-                window.location.href = `${response.logoutUrl}?id_token_hint=${response.idToken}`
-                    + `&post_logout_redirect_uri=${window.location.origin}`;
-            });
+        });
     }
 
     const message = user ?
