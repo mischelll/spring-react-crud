@@ -1,19 +1,22 @@
 package com.example.crud.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
-    private Long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

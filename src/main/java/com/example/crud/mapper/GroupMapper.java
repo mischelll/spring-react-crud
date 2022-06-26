@@ -20,7 +20,7 @@ public interface GroupMapper extends EntityMapper<GroupDTO, Group> {
      * @param id the id
      * @return the group
      */
-    default Group fromId(Long id){
+    default Group fromId(String id){
         if(id == null){
             return null;
         }

@@ -16,7 +16,7 @@ public interface EventService {
      *
      * @param id the id
      */
-    void delete(Long id);
+    void delete(String id);
 
     /**
      * Save event dto.
@@ -39,7 +39,7 @@ public interface EventService {
      * @param id the id
      * @return the event dto
      */
-    EventDTO findOne(Long id);
+    EventDTO findOne(String id);
 
     /**
      * Partial update event dto.

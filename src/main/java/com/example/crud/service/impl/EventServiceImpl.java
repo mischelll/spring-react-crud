@@ -43,24 +43,24 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO findOne(Long id) {
+    public EventDTO findOne(String id) {
         log.info("Finding one Event by id: {}", id);
         return eventMapper.toDto(eventRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Event with id: %d not found!", id))));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Event with id: %s not found!", id))));
     }
 
     @Override
     public EventDTO partialUpdate(EventDTO eventDTO) {
         log.info("Partially update Event: {}", eventDTO);
         Event event = eventRepository.findById(eventDTO.getId())
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Event with id: %d not found!", eventDTO.getId())));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Event with id: %s not found!", eventDTO.getId())));
         eventMapper.partialUpdate(event, eventDTO);
         Event updatedEvent = eventRepository.save(event);
         return eventMapper.toDto(updatedEvent);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.info("Delete Event by id: {}", id);
         eventRepository.deleteById(id);
     }

@@ -49,7 +49,7 @@ public class EventResource {
      * @return the response entity
      */
     @GetMapping("/events/{id}")
-    public ResponseEntity<EventDTO> getOne(@PathVariable Long id){
+    public ResponseEntity<EventDTO> getOne(@PathVariable String id){
         log.info("REST request to find one Event by id: {}", id);
         EventDTO eventById = eventService.findOne(id);
         return ResponseEntity.ok(eventById);
@@ -88,7 +88,7 @@ public class EventResource {
      * @return the response entity
      */
     @DeleteMapping("/events/{id}")
-    public ResponseEntity<Void> deleteOne(@PathVariable Long id){
+    public ResponseEntity<Void> deleteOne(@PathVariable String id){
         log.info("REST request to delete Event by id: {}", id);
         eventService.delete(id);
         return ResponseEntity.noContent().build();

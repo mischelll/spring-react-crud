@@ -20,7 +20,7 @@ public interface UserMapper extends EntityMapper<UserDTO, User>{
      * @param id the id
      * @return the user
      */
-    default User fromId(Long id){
+    default User fromId(String id){
         if(id == null){
             return null;
         }

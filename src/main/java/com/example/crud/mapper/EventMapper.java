@@ -20,7 +20,7 @@ public interface EventMapper extends EntityMapper<EventDTO, Event> {
      * @param id the id
      * @return the event
      */
-    default Event fromId(Long id) {
+    default Event fromId(String id) {
         if (id == null) {
             return null;
         }

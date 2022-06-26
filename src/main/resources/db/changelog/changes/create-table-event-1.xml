@@ -5,13 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet author="admin" id="create-table-event">
         <createTable tableName="events">
-            <column name="id" type="INT">
+            <column name="id" type="VARCHAR(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="date" type="timestamp"/>
             <column name="title" type="VARCHAR(255)"/>
             <column name="description" type="VARCHAR(255)"/>
-            <column name="group_id" type="bigint"/>
+            <column name="group_id" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

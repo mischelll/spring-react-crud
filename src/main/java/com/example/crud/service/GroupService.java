@@ -14,7 +14,7 @@ public interface GroupService {
      *
      * @param id the id
      */
-    void delete(Long id);
+    void delete(String id);
 
     /**
      * Save group dto.
@@ -37,7 +37,7 @@ public interface GroupService {
      * @param id the id
      * @return the group dto
      */
-    GroupDTO findOne(Long id);
+    GroupDTO findOne(String id);
 
     /**
      * Partial update group dto.
@@ -46,7 +46,7 @@ public interface GroupService {
      * @param groupDTO the group dto
      * @return the group dto
      */
-    GroupDTO partialUpdate(Long id, GroupDTO groupDTO);
+    GroupDTO partialUpdate(String id, GroupDTO groupDTO);
 
     /**
      * Find all by user id list.
@@ -54,5 +54,5 @@ public interface GroupService {
      * @param userId the user id
      * @return the list
      */
-    List<GroupDTO> findAllByUserId(Long userId);
+    List<GroupDTO> findAllByUserId(String userId);
 }

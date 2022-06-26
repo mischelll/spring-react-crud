@@ -5,10 +5,10 @@
 
     <changeSet id="create-event-user-join-table" author="admin">
         <createTable tableName="events_users">
-            <column name="event_id" type="bigint">
+            <column name="event_id" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="bigint">
+            <column name="user_id" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

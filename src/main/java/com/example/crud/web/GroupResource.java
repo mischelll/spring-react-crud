@@ -5,6 +5,8 @@ import com.example.crud.service.dto.GroupDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -49,7 +51,7 @@ public class GroupResource {
      * @return the response entity
      */
     @GetMapping("/groups/{id}")
-    public ResponseEntity<GroupDTO> getGroup(@PathVariable Long id) {
+    public ResponseEntity<GroupDTO> getGroup(@PathVariable String id) {
         log.info("REST request to get Group by id: {}", id);
         GroupDTO groupDTO = groupService.findOne(id);
         return ResponseEntity.ok(groupDTO);
@@ -62,8 +64,11 @@ public class GroupResource {
      * @return the response entity
      */
     @PostMapping("/groups")
-    public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO groupDTO) {
+    public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO groupDTO,
+                                                @AuthenticationPrincipal OAuth2User principal) {
         log.info("REST request to create Group: {}", groupDTO);
+        String userId = principal.getAttributes().get("sub").toString();
+        groupDTO.setUserId(userId);
         GroupDTO newGroup = groupService.save(groupDTO);
         return ResponseEntity.created(URI.create("/api/v1/groups")).body(newGroup);
     }
@@ -76,7 +81,7 @@ public class GroupResource {
      * @return the response entity
      */
     @PatchMapping("/groups/{id}")
-    public ResponseEntity<GroupDTO> partialUpdateGroup(@PathVariable Long id, @RequestBody GroupDTO groupDTO) {
+    public ResponseEntity<GroupDTO> partialUpdateGroup(@PathVariable String id, @RequestBody GroupDTO groupDTO) {
         log.info("REST request to partially update Group: {}", groupDTO);
         GroupDTO partialUpdatedGroup = groupService.partialUpdate(id, groupDTO);
         return ResponseEntity.ok(partialUpdatedGroup);
@@ -89,7 +94,7 @@ public class GroupResource {
      * @return the response entity
      */
     @DeleteMapping("/groups/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable String id){
         log.info("REST request to delete Group by id: {}", id);
         groupService.delete(id);
         return ResponseEntity.noContent().build();

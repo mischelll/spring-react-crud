@@ -7,15 +7,23 @@ import java.util.Set;
 public class GroupDTO {
 
     private Long id;
+
     @NotNull
     private String name;
+
     private String address;
+
     private String city;
+
     private String stateOfProvince;
+
     private String country;
+
     private String postalCode;
 
     private Set<EventDTO> events;
+
+    private String userId;
 
     public String getName() {
         return name;
@@ -79,5 +87,13 @@ public class GroupDTO {
 
     public void setEvents(Set<EventDTO> events) {
         this.events = events;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

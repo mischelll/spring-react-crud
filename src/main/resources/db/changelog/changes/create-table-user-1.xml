@@ -8,7 +8,7 @@
     </changeSet>
     <changeSet author="admin" id="create-table-user">
         <createTable tableName="users">
-            <column name="id" type="INT">
+            <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">

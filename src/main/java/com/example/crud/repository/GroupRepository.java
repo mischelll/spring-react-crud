@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * The interface Group repository.
  */
-public interface GroupRepository extends JpaRepository<Group, Long> {
+public interface GroupRepository extends JpaRepository<Group, String> {
     /**
      * Find all by user id list.
      *
      * @param userId the user id
      * @return the list
      */
-    List<Group> findAllByUserId(Long userId);
+    List<Group> findAllByUserId(String userId);
 }

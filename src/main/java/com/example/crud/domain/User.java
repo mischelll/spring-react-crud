@@ -2,12 +2,17 @@ package com.example.crud.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User {
+
+    @Id
+    private String id;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -28,6 +33,14 @@ public class User extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

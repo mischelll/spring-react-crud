@@ -15,5 +15,5 @@ public interface UserService {
      * @param id the id
      * @return the user dto
      */
-    UserDTO findById(Long id);
+    UserDTO findById(String id);
 }
