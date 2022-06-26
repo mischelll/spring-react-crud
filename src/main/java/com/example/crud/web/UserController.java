@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"}, maxAge = 3600)
+@CrossOrigin(origins = "*")
 public class UserController {
     private ClientRegistration registration;
 
@@ -46,5 +46,10 @@ public class UserController {
         logoutDetails.put("idToken", idToken.getTokenValue());
         request.getSession(false).invalidate();
         return ResponseEntity.ok().body(logoutDetails);
+    }
+
+    @GetMapping("/private")
+    public String redirectToRoot() {
+        return "redirect:/";
     }
 }

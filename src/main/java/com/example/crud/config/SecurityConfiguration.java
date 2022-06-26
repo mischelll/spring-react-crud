@@ -20,9 +20,11 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .antMatchers("/**/*.{js,html,css}").permitAll()
-                        .antMatchers("/", "/api/user").permitAll()
+                        .antMatchers("/api/v1", "/api/v1/user").permitAll()
                         .anyRequest()
+
                         .authenticated())
+
                 .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .oauth2Login();
         return http.build();
